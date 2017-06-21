@@ -12,7 +12,7 @@
   "scripts": {
     "start": "./node_modules/.bin/gulp start",
     "build": "./node_modules/.bin/gulp build",
-    "dev": "qap debug --host 192.168.1.105"
+    "dev": "qap debug --host 192.168.1.104"
   },
   "dependencies": {
     "mobx": "^3.1.16"

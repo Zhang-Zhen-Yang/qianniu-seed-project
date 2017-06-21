@@ -50,7 +50,7 @@ class Demo extends Component {
                     点击手机千牛右上角刷新，
                 </Text>
                 <Text style={styles.instructions}>
-                    或者刷新浏览器立即查看效果
+                    或者刷新浏览器立即查看效果 dddddddddddddddd
                 </Text>
             </View>
         );
