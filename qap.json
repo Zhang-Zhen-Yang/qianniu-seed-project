@@ -6,6 +6,11 @@
       "default": true,
       "capability": "itemChoose",
       "url": "qap:///index.js"
+    },
+    {
+      "default": false,
+      "capability": "itemChoose",
+      "url": "qap:///list.js"
     }
   ],
   "iconfonts": [
