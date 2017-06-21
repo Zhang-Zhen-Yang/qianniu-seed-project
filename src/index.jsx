@@ -40,18 +40,8 @@ class Demo extends Component {
                 <Text style={styles.welcome}>
                     欢迎使用千牛!kkkkk
                 </Text>
-                <Text style={styles.welcome}>
-                    欢迎使用千牛!kkkkk
-                </Text>
-                <Text style={styles.instructions}>
-                    编辑src/index.jsx文件，开始QAP之旅，
-                </Text>
-                <Text style={styles.instructions}>
-                    点击手机千牛右上角刷新，
-                </Text>
-                <Text style={styles.instructions}>
-                    或者刷新浏览器立即查看效果 dddddddddddddddd
-                </Text>
+                
+                
             </View>
         );
     }
