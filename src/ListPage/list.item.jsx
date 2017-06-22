@@ -11,12 +11,10 @@ class ListItem extends Component {
     }
     render() {
         return (
-            <View style={styles.listItem}>                
+            <View style={styles.listItem} onClick={()=>{this.props.actionPress()}}>                
                 <Image src={this.props.item.img} style={{width:200,height:200}} resizeMode="cover"></Image>
-                <View style={{alginItems:'center',flex:1,paddingLeft:10,paddingRight:10}}>
-                    
-                    <Text text-overflow='ellipsis' style={{flex:1,fontSize:'18wx',lines:2,textOverflow:'ellipsis',color:'#666666'}}>{this.props.item.title}</Text> 
-                    
+                <View style={{alginItems:'center',flex:1,paddingLeft:10,paddingRight:10}}>                    
+                    <Text text-overflow='ellipsis' style={{flex:1,fontSize:'16wx',lines:2,textOverflow:'ellipsis',color:'#666666'}}>{this.props.item.title}</Text>                     
                     <Text style={{fontSize:'16wx',color:'orange',fontWeight:'bold'}}>{this.props.item.price}</Text>
                 </View>
                 
@@ -34,8 +32,10 @@ const styles = {
         flexDirection:'row',
         justifyContent: 'flex-start',
         alignItems: 'stretch',
-        backgroundColor: '#F5FCFF',
-        padding:2
+        backgroundColor: '#ffffff',
+        marginTop:5,
+        marginBottom:5,
+
     },
    
 };

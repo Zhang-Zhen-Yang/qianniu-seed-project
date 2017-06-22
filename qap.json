@@ -5,12 +5,14 @@
     {
       "default": true,
       "capability": "itemChoose",
-      "url": "qap:///index.js"
+      "url": "qap:///index.js",
+      "h5Url": "/index.html"
     },
     {
       "default": false,
       "capability": "itemChoose",
-      "url": "qap:///list.js"
+      "url": "qap:///list.js",
+      "h5Url": "/list.html"
     }
   ],
   "iconfonts": [

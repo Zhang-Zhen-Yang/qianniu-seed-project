@@ -32,7 +32,8 @@ class Empty extends Component {
         //Navigator.push('https://m.taobao.com');
         //Navigator.push('https://h5.m.taobao.com/qn/mobile/weex-tpl.html?_wx_tpl=https://g.alicdn.com/nuke/components/0.2.21/view.js','下个页面标题');
         this.props.add();
-        Navigator.push('qap:///list.js');
+        console.log('dddddd');
+        //Navigator.push('qap:///list.js');
         //Navigator.push('http://www.bilibili.com/');
     }
 }
