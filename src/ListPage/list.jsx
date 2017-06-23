@@ -2,7 +2,7 @@
 
 import {createElement, Component, render} from 'rax';
 import {View, Text, Modal, Image, Button, Switch, ListView, ScrollView } from 'nuke';
-import GoTop from 'rax-gotop';
+//import GoTop from 'rax-gotop';
 import QN from 'QAP-SDK';
 import {connect} from 'rax-redux'
 import { listData } from './list.data'
@@ -16,9 +16,7 @@ class List extends Component {
     render() {
         return (
             <View style={[styles.container,{alignItems:'stretch',justifyContent:'flex-start'}]}>
-                <GoTop name="顶部" style={{width: 100, height: 100}}
-                    onTop={() => { }}
-                    icon="//gtms03.alicdn.com/tps/i3/TB1rrfVJVXXXXalXXXXGEZzGpXX-40-40.png" />
+                
                 {/*<Text>{JSON.stringify(this.props.listData)}</Text>*/}
                 {<Text>当前页{this.props.currentPage}</Text>}
                 <ListView 

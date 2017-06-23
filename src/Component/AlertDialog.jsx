@@ -1,6 +1,6 @@
 
 /** @jsx createElement */
-import { View, Text, ScrollView, Dialog, Button } from 'nuke';
+import { View, Text, ScrollView, Dialog, Button, Modal } from 'nuke';
 import {createElement, Component,render} from 'rax';
 let App = class NukeDemoIndex extends Component {
     constructor() {
@@ -51,6 +51,9 @@ let App = class NukeDemoIndex extends Component {
             </ScrollView>
 
         );
+    }
+    componentDidMount(){
+        Modal.alert('alertDialog');
     }
 }
 var styles = {
@@ -136,5 +139,5 @@ var styles = {
     justifyContent: 'center'
   }
 };
-render(<App/>);
+export default App
 
