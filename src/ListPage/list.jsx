@@ -19,6 +19,7 @@ class List extends Component {
                 
                 {/*<Text>{JSON.stringify(this.props.listData)}</Text>*/}
                 {<Text>当前页{this.props.currentPage}</Text>}
+                 <Image autoFit={true} src="https://gd2.alicdn.com/imgextra/i2/413996455/TB2tNcJbd0opuFjSZFxXXaDNVXa_!!413996455.jpg" style={{quality:"original"}}/>
                 <ListView 
                 renderHeader={this._renderHeader}
                 renderFooter={this._renderFooter}
