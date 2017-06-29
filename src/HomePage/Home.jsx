@@ -17,10 +17,16 @@ class Empty extends Component {
       super(props);
     }
     render() {
+        let imgUrl = 'https://p.ssl.qhimg.com/dmsmfl/120_100_/t01e407dcc627bbdc3b.webp?size=180x240';
         return (
             <View style={styles.container}>
                 <Text>{this.props.counter.num}</Text>
-                <Image src="https://p.ssl.qhimg.com/dmsmfl/120_100_/t01e407dcc627bbdc3b.webp?size=180x240" style={{width:500,height:500}} onClick={()=>{this._imagePress()}}/>
+                <Image 
+                    src={imgUrl}
+                    source={{uri:imgUrl}}
+                    autoFit = {false} 
+                    style={{width:500,height:500}} 
+                    onClick={()=>{this._imagePress()}}/>
             </View>
         );
     }
