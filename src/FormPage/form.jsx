@@ -1,7 +1,7 @@
 'use strict';
 
 import { createElement, Component, render } from 'rax';
-import { View, Text, Modal, NumberPicker, TextInput } from 'nuke';
+import { View, Text, Modal, NumberPicker, TextInput, Image } from 'nuke';
 import QN from 'QAP-SDK';
 import {connect} from 'rax-redux'
 import R from '../Util/R'
@@ -14,16 +14,19 @@ class FormDemo extends Component {
       }
     }
     render() {
-        
         return (
             <View style={[R.style.column]}>          
                 
                 <View style={{flexDirection:'row',flexWrap:'wrap'}}>
-                    qap.json用来声明页面、<Text style={{color:'red'}}>描述页面的能力</Text>
-                    {this.state.words.split('').map((item)=>{
+                    &emsp;qap.json用来声明页面、<Text style={{color:'red'}}>描述页面的能力</Text>
+                    <Image source={{uri:'http://p1.so.qhimgs1.com/bdr/_240_/t0113514e56d206a0ed.png'}} style={{width:100,height:50}}></Image>
+                    {'和本地iconfont文件，是qap工程的配置文件。'.split('').map((item)=>{
                         return <Text>{item}</Text>
                     })}
                 </View>
+                <Image source={{uri:'http://p1.so.qhimgs1.com/bdr/_240_/t0113514e56d206a0ed.png'}} style={{width:100,height:100}}> 
+                    <Text style={{color:'red'}}>kdfkdkfdkfkdfkdk</Text>
+                </Image>
 
             </View>
         );

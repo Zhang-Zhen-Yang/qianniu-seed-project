@@ -1,7 +1,7 @@
 'use strict';
 
 import {createElement, Component, render} from 'rax';
-import {View, Text, Modal, Image, Button, Switch, ListView, ScrollView } from 'nuke';
+import {View, Text, Modal, Image, Button, Switch, ListView, ScrollView, RefreshControl, TouchableHighlight } from 'nuke';
 //import GoTop from 'rax-gotop';
 import QN from 'QAP-SDK';
 import {connect} from 'rax-redux'
@@ -12,21 +12,39 @@ import ListHeader from './list.header.jsx'
 class List extends Component {
     constructor(props) {
       super(props);
+      this.state={
+          isRefreshing:false,
+          refreshText:'刷新中...'
+      }
     }
     render() {
-        return (
+        return ( 
             <View style={[styles.container,{alignItems:'stretch',justifyContent:'flex-start'}]}>
                 
-                {/*<Text>{JSON.stringify(this.props.listData)}</Text>*/}
-                {<Text>当前页{this.props.currentPage}</Text>}
-                 <Image autoFit={true} src="https://gd2.alicdn.com/imgextra/i2/413996455/TB2tNcJbd0opuFjSZFxXXaDNVXa_!!413996455.jpg" style={{quality:"original"}}/>
+                <Text>当前页{this.props.currentPage}</Text>
                 <ListView 
-                renderHeader={this._renderHeader}
-                renderFooter={this._renderFooter}
-                dataSource={this.props.listData/*listData*/}
-                renderRow={this._renderRow}
-                onEndReached={()=>{this.endReached()}}></ListView>
+                    ref={(ref)=>{this.list = ref}}
+                    renderHeader={this._renderHeader}
+                    renderFooter={this._renderFooter}
+                    dataSource={this.props.listData/*listData*/}
+                    renderRow={this._renderRow.bind(this)}
+                    onEndReached={()=>{this.endReached()}}>
+                </ListView>
+
+                <TouchableHighlight onPress={()=>{this._goTop()}}>
+                    <View style={styles.goTopWarp}>
+                        <Image 
+                            style={styles.goTop}
+                            source={{uri:'https://gtms03.alicdn.com/tps/i3/TB1rrfVJVXXXXalXXXXGEZzGpXX-40-40.png'}}>
+                        </Image>
+                    </View>
+                </TouchableHighlight>
+                
+                
+            
             </View>
+         
+            
         );
     }
     componentDidMount(){
@@ -46,13 +64,20 @@ class List extends Component {
     }
     _renderRow(item,index){
         return (
-            <ListItem item={item} actionPress={()=>{Modal.alert(index)}}></ListItem>
+            <ListItem item={item} index={index} actionPress={()=>{Modal.alert(index)}}></ListItem>
         )
     }
     endReached(){
-        Modal.alert('endReached');
+        Modal.toast('endReached');
         this.props.LoadMoreData();
     }
+    handleRefresh(){
+        Modal.toast('refresh');
+    }
+    _goTop(){
+        this.list.scrollTo({y:0});
+    }
+
 }
 
 const styles = {
@@ -62,6 +87,23 @@ const styles = {
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
     },
+    goTopWarp:{
+        borderWidth:2,
+        borderColor:'gray',
+        borderStyle:'solid',
+        borderRadius:25,
+        width:54,
+        height:54,
+        padding:10,
+        position:'absolute',
+        right:50,
+        bottom:50,
+        backgroundColor:'white'
+    },
+    goTop:{
+        width:30,
+        height:30,
+    }
    
 };
 
