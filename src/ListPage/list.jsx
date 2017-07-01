@@ -23,6 +23,7 @@ class List extends Component {
                 
                 <Text>当前页{this.props.currentPage}</Text>
                 <ListView 
+                    style={{height:500}}
                     ref={(ref)=>{this.list = ref}}
                     renderHeader={this._renderHeader}
                     renderFooter={this._renderFooter}
@@ -31,15 +32,15 @@ class List extends Component {
                     onEndReached={()=>{this.endReached()}}>
                 </ListView>
 
-                <TouchableHighlight onPress={()=>{this._goTop()}}>
-                    <View style={styles.goTopWarp}>
+               
+                    <View style={styles.goTopWarp} >
                         <Image 
+                        onClick={()=>{this._goTop()}}
                             style={styles.goTop}
                             source={{uri:'https://gtms03.alicdn.com/tps/i3/TB1rrfVJVXXXXalXXXXGEZzGpXX-40-40.png'}}>
                         </Image>
                     </View>
-                </TouchableHighlight>
-                
+                            
                 
             
             </View>
@@ -76,6 +77,14 @@ class List extends Component {
     }
     _goTop(){
         this.list.scrollTo({y:0});
+        Modal.alert('dd');
+        /*for(let i in this.list){
+            console.log(i);
+        }*/
+    }
+    _goTopClick(){
+        
+        //this.list//.scrollTo({y:0});
     }
 
 }
@@ -88,21 +97,21 @@ const styles = {
         backgroundColor: '#F5FCFF',
     },
     goTopWarp:{
-        borderWidth:2,
+        borderWidth:1,
         borderColor:'gray',
         borderStyle:'solid',
-        borderRadius:25,
-        width:54,
-        height:54,
-        padding:10,
-        position:'absolute',
+        borderRadius:40,
+        width:82,
+        height:82,
+        padding:15,
+        position:'fixed',
         right:50,
         bottom:50,
         backgroundColor:'white'
     },
     goTop:{
-        width:30,
-        height:30,
+        width:50,
+        height:50,
     }
    
 };

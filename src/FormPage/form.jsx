@@ -5,6 +5,7 @@ import { View, Text, Modal, NumberPicker, TextInput, Image } from 'nuke';
 import QN from 'QAP-SDK';
 import {connect} from 'rax-redux'
 import R from '../Util/R'
+import SpannableString from '../Component/SpannableString.jsx'
 
 class FormDemo extends Component {
     constructor(props) {
@@ -27,12 +28,23 @@ class FormDemo extends Component {
                 <Image source={{uri:'http://p1.so.qhimgs1.com/bdr/_240_/t0113514e56d206a0ed.png'}} style={{width:100,height:100}}> 
                     <Text style={{color:'red'}}>kdfkdkfdkfkdfkdk</Text>
                 </Image>
-
+                <Text style={{fontStyle:'normal',textDecoration:'line-through'}}>
+                    晓佳奈创作的轻小说《紫dddddfd
+                </Text>
+                <SpannableString style={{color:'red'}}
+                opts={[
+                    {start:0,end:2,style:{color:'blue'}},
+                     {start:10,end:20,style:{color:'green',fontSize:'50rem',fontStyle:'italic',textDecoration:'line-through'}},
+                     {start:20,end:30,style:{color:'yellow'}},
+                     {start:30,and:40,style:{color:'gray',textDecoration:'line-through'}}
+                 ]}
+                 text="晓佳奈创作的轻小说《紫罗兰永恒花园》CM公布，由KAエスマ文库出版与刊行。曾获得第5回京都动画大赏，也是京都大赏举办至今第一个以及唯一一个正统大赏得主。"></SpannableString>
+                 
             </View>
         );
     }
     componentDidMount(){
-        Modal.alert("didMount") 
+        //Modal.alert("didMount") 
     }
     change(){
 
