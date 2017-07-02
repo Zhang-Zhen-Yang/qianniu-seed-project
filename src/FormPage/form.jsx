@@ -31,15 +31,15 @@ class FormDemo extends Component {
                 <Text style={{fontStyle:'normal',textDecoration:'line-through'}}>
                     晓佳奈创作的轻小说《紫dddddfd
                 </Text>
-                <SpannableString style={{color:'red'}}
+                <SpannableString style={{color:'red',fontSize:'50rem'}}
                 opts={[
                     {start:0,end:2,style:{color:'blue'}},
                      {start:10,end:20,style:{color:'green',fontSize:'50rem',fontStyle:'italic',textDecoration:'line-through'}},
-                     {start:20,end:30,style:{color:'yellow'}},
-                     {start:30,and:40,style:{color:'gray',textDecoration:'line-through'}}
+                     {start:20,end:30,style:{color:'yellow',textDecoration:'underline'}},
+                     {start:30,end:40,style:{color:'gray',textDecoration:'line-through'}}
                  ]}
                  text="晓佳奈创作的轻小说《紫罗兰永恒花园》CM公布，由KAエスマ文库出版与刊行。曾获得第5回京都动画大赏，也是京都大赏举办至今第一个以及唯一一个正统大赏得主。"></SpannableString>
-                 
+                
             </View>
         );
     }
