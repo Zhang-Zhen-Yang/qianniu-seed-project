@@ -5,6 +5,16 @@ import {createElement, Component,render} from 'rax';
 let App = class NukeDemoIndex extends Component {
     constructor() {
         super();
+        this.state={
+            title:'title',
+            message:'message',
+            positiveButton:{
+                text:'确定'
+            },
+            /*negativeButton:{
+                text:'取消'
+            }    */             
+        }
     }
 
     showModal = () => {
@@ -12,57 +22,59 @@ let App = class NukeDemoIndex extends Component {
     }
     hideModal = () => {
         this.refs.modal1.hide();
+        this.state.negativeButton.callback?this.state.negativeButton.callback():''
     }
     hideModalAndConfirm = () =>{
-        console.log('confirm')
         this.refs.modal1.hide();
+        this.state.positiveButton.callback?this.state.positiveButton.callback():''
     }
     onShow = (param) => {
         console.log('modal show', param);
+        this.state.onShow?this.state.onShow():''
     }
 
     onHide = (param) => {
         console.log('modal hide', param);
+        this.state.onHide?this.state.onHide():''
     }
     onMaskPress = (param) => {
         this.refs.modal1.hide();
+        this.state.onMaskPress?this.state.onMaskPress():''
+    }
+    show (data){
+        this.setState(data)
+        this.showModal();
+    }
+    hide (){
+        this.hideModal();
     }
 
     render() {
         return (
-            <ScrollView style={styles.wrapper}>
-                <View style={{height:'2000rem'}}>
-                    <Button type="primary" onPress={this.showModal}>点击打开对话框，可以点击遮罩层关闭</Button>
+            <Dialog ref="modal1" duration={1000} contentStyle={styles.modalStyle} onShow={this.onShow} onHide={this.onHide} onMaskPress={this.onMaskPress}>
+                <View style={styles.body}>
+                    <View style={styles.head}><Text style={styles.textHead}>{this.state.title}</Text></View>
+                    <View style={styles.tips}><Text style={styles.text}>{this.state.message}</Text></View>
                 </View>
-                <Dialog ref="modal1" duration={1000} contentStyle={styles.modalStyle} onShow={this.onShow} onHide={this.onHide} onMaskPress={this.onMaskPress}>
-                    <View style={styles.body}>
-                        <View style={styles.head}><Text style={styles.textHead}>确定吗？</Text></View>
-                        <View style={styles.tips}><Text style={styles.text}>此操作不此操作不可逆此操作不可逆此操作不可逆此操作不可逆此操作不可逆此操作不可逆此操作不可逆此操作不可逆此操作不可逆可逆，是否继续</Text></View>
-                    </View>
-                    <View style={styles.footer}>
-                        <Button style={styles.dlgBtn} type="normal" onPress={this.hideModal}>取消</Button>                        
-                        <Text style={styles.dlgBtnSeperator}>|</Text>                       
-                        <Button style={styles.dlgBtn} type="normal" onPress={this.hideModalAndConfirm}>确定</Button>
+                <View style={styles.footer}>                   
+                    {
+                        this.state.negativeButton?([
+                            <Button key={0} style={styles.dlgBtn} type="normal" onPress={this.hideModal}>{this.state.negativeButton.text}</Button>,
+                            <Text key={1} style={styles.dlgBtnSeperator}>|</Text>
+                            ]):('')
+                    }
+                    <Button style={styles.dlgBtn} type="normal" onPress={this.hideModalAndConfirm}>{this.state.positiveButton.text}</Button>
 
-                    </View>
-
-                </Dialog>
-
-            </ScrollView>
+                </View>
+            </Dialog>
 
         );
     }
     componentDidMount(){
-        Modal.alert('alertDialog');
+        
     }
 }
 var styles = {
-  wrapper: {
-    paddingLeft: '24rem',
-    paddingRight: '24rem',
-    paddingTop: '24rem',
-    backgroundColor:'#f4f4f4'
-  },
   click: {
     height: '100rem',
     lineHeight: '100rem',
@@ -76,8 +88,8 @@ var styles = {
     height: '364rem',
     borderTopColor:'#3089dc',
     borderTopStyle:'solid',
-    //borderTopWidth:'8rem',
-    // padding:'10rem',
+    borderTopWidth:'8rem',
+    padding:'10rem',
     borderRadius:'8rem',
   },
   body: {

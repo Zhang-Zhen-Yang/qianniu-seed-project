@@ -23,7 +23,7 @@ class List extends Component {
                 
                 <Text>当前页{this.props.currentPage}</Text>
                 <ListView 
-                    style={{height:500}}
+                    style={{}}
                     ref={(ref)=>{this.list = ref}}
                     renderHeader={this._renderHeader}
                     renderFooter={this._renderFooter}
