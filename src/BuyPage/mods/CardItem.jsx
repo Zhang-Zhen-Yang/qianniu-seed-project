@@ -18,7 +18,7 @@ class Card extends Component {
       <Link href={url} style={style.root}>
         <View style={style.container}>
           <View style={style.picBox}>
-            <Image source={{uri: pic}} style={style.pic} resizeMode={'contain'} />
+            <Image source={{uri: pic}} style={style.pic} resizeMode={'cover'} />
           </View>
           <View style={style.context}>
             <Text numberOfLines="1" style={style.title}>{title}</Text>

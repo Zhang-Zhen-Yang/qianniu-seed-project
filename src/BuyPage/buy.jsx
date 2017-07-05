@@ -11,6 +11,7 @@ import FormLine from './mods/FormLine';
 import FormSub from './mods/FormSub';
 import styles from './styles.css';
 
+
 class TabbarDemo extends Component {
     constructor(props) {
         super(props);
@@ -79,20 +80,23 @@ class TabbarDemo extends Component {
                         <Picker.Item value={'20.00'} label={'EMS ¥ 20.00'} />
                     </Picker>
                     <Image source={{uri: 'https://gw.alicdn.com/tfs/TB1JxM4QVXXXXc3aXXXXXXXXXXX-26-52.jpg'}} style={styles.pickerPic} resizeMode={'contain'} />
-            </View>
+                </View>
             </FormLine>
             <FormLine>
                 <Text>运费险</Text>
-                <View style={styles.pickerBox}>
-                    <Picker
-                    selectedValue={'0.00'}
-                    onValueChange={(item) => {
-                        this.state.express = item;
-                    }}
-                    style={styles.picker}>
-                    <Picker.Item value={'0.00'} label={'无运费险'} />
-                    <Picker.Item value={'10.00'} label={'运费险 ¥ 20.00'} />
-                    </Picker>
+                <View style={[styles.pickerBox,{flexDirection:'row',alignItems:'center'}]}>
+                    {/*<Picker
+                        selectedValue={'0.00'}
+                        onValueChange={(item) => {
+                            this.state.express = item;
+                        }}
+                        style={styles.picker}>
+                        <Picker.Item value={'0.00'} label={'无运费险'} />
+                        <Picker.Item value={'10.00'} label={'运费险 ¥ 20.00'} />
+                    </Picker>*/}
+                    <Text>
+                       运费险 ¥ 20.00 
+                    </Text>
                     <Image source={{uri: 'https://gw.alicdn.com/tfs/TB1JxM4QVXXXXc3aXXXXXXXXXXX-26-52.jpg'}} style={styles.pickerPic} resizeMode={'contain'} />
                 </View>
             </FormLine>
@@ -100,8 +104,8 @@ class TabbarDemo extends Component {
             <FormLine>
                 <Text>运费险投保须知</Text>
                 <View><Text>？</Text></View>
-                </FormLine>
-                <FormLine>
+            </FormLine>
+            <FormLine>
                 <Text>买家留言</Text>
                 <View>
                     <TextInput
@@ -133,8 +137,8 @@ class TabbarDemo extends Component {
             <FormSub>
                 <Text style={styles.subText}>合计</Text>
                 <Text style={styles.price}>¥ 40.00</Text>
-                <Button style={styles.btn} onPress={this.formSub}>
-                    <Text style={styles.btnText}>提交订单</Text>
+                <Button style={[styles.btn,styles.btnText]} onPress={this.formSub}>
+                    提交订单
                 </Button>
             </FormSub>
         </ScrollView>

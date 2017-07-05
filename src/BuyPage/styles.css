@@ -84,8 +84,8 @@
 }
 .btnText{
   color: #ffffff;
-  padding-top: 20;
-  padding-left: 40;
+  /*padding-top: 20;
+  padding-left: 40;*/
   font-size: 30;
 }
 .pickerBox{
@@ -96,7 +96,7 @@
   width: 300;
 }
 .pickerPic{
-  position: absolute;
+  /*position: absolute;*/
   width: 26;
   height: 52;
   right: 10;
