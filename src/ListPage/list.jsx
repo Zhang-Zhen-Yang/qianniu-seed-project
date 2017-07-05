@@ -76,7 +76,7 @@ class List extends Component {
         Modal.toast('refresh');
     }
     _goTop(){
-        this.list.scrollTo({y:0});
+        //this.list.scrollTo({y:0});
         Modal.alert('dd');
         /*for(let i in this.list){
             console.log(i);
@@ -135,6 +135,13 @@ const mapDispatchToProps = (dispatch,ownProps) => {
                     setTimeout(()=>{
                         dispatch({type:'LoadMoreData',res:listData})
                     },2000)
+                }
+            )
+        },
+        goTop:()=>{
+            dispatch(
+                function(dispatch,getState){
+                    
                 }
             )
         }

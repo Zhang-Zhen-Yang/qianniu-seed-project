@@ -85,7 +85,8 @@ var config = {
         },{
             test: /\.json$/,
             loader: 'json-loader'
-        }]
+        }
+        ]
     },
 
     plugins: [
