@@ -1,7 +1,7 @@
 'use strict';
 
 import {createElement, Component, render } from 'rax';
-import {View, Text, Modal, Number,ScrollView,Image,Switch,Picker,TextInput,Button} from 'nuke';
+import {View, Text, Modal, Number,ScrollView,Image,Switch,Picker,TextInput,Button,TouchableHighlight} from 'nuke';
 import QN from 'QAP-SDK';
 import {connect} from 'rax-redux'
 
@@ -21,6 +21,16 @@ class TabbarDemo extends Component {
             count: 1,
             express: '',
             huabei: false,
+            insurance:[
+                {value:'无运费险',key:0},
+                {value:'运费险 ¥ 20.00',key:1}
+            ],
+            insuranceSelectedKey:1,
+            expressData:[
+               {value:'快递 ¥ 10.00',key:0},
+               {value:'EMS ¥ 20.00',key:1}
+            ],
+            expressSelectedKey:1
         };
     }
     formSub = () => {
@@ -69,22 +79,28 @@ class TabbarDemo extends Component {
             </FormLine>
             <FormLine>
                 <Text>配送方式</Text>
-                <View style={styles.pickerBox}>
-                    <Picker
-                        selectedValue={'10.00'}
-                        onValueChange={(item) => {
-                            this.state.express = item;
-                        }}
-                        style={styles.picker}>
-                        <Picker.Item value={'10.00'} label={'快递 ¥ 10.00'} />
-                        <Picker.Item value={'20.00'} label={'EMS ¥ 20.00'} />
-                    </Picker>
-                    <Image source={{uri: 'https://gw.alicdn.com/tfs/TB1JxM4QVXXXXc3aXXXXXXXXXXX-26-52.jpg'}} style={styles.pickerPic} resizeMode={'contain'} />
-                </View>
+                <TouchableHighlight onPress={()=>{this._expressPick()}}>
+                    <View style={[styles.pickerBox,{flexDirection:'row',alignItems:'center'}]}>
+                        {/*<Picker
+                            selectedValue={'10.00'}
+                            onValueChange={(item) => {
+                                this.state.express = item;
+                            }}
+                            style={styles.picker}>
+                            <Picker.Item value={'10.00'} label={'快递 ¥ 10.00'} />
+                            <Picker.Item value={'20.00'} label={'EMS ¥ 20.00'} />
+                        </Picker>*/}
+                        <Text>
+                            {this.state.expressData[this.state.expressSelectedKey].value}
+                        </Text>
+                        <Image source={{uri: 'https://gw.alicdn.com/tfs/TB1JxM4QVXXXXc3aXXXXXXXXXXX-26-52.jpg'}} style={styles.pickerPic} resizeMode={'contain'} />
+                    </View>
+                </TouchableHighlight>
             </FormLine>
             <FormLine>
                 <Text>运费险</Text>
-                <View style={[styles.pickerBox,{flexDirection:'row',alignItems:'center'}]}>
+                <TouchableHighlight onPress={(e)=>{this._insurancePick()}}>
+                <View style={[styles.pickerBox,{flexDirection:'row',alignItems:'center'}]} >
                     {/*<Picker
                         selectedValue={'0.00'}
                         onValueChange={(item) => {
@@ -95,10 +111,11 @@ class TabbarDemo extends Component {
                         <Picker.Item value={'10.00'} label={'运费险 ¥ 20.00'} />
                     </Picker>*/}
                     <Text>
-                       运费险 ¥ 20.00 
+                       {this.state.insurance[this.state.insuranceSelectedKey].value}
                     </Text>
                     <Image source={{uri: 'https://gw.alicdn.com/tfs/TB1JxM4QVXXXXc3aXXXXXXXXXXX-26-52.jpg'}} style={styles.pickerPic} resizeMode={'contain'} />
                 </View>
+                </TouchableHighlight>
             </FormLine>
 
             <FormLine>
@@ -145,7 +162,41 @@ class TabbarDemo extends Component {
         );
     }
     componentDidMount(){
-        Modal.alert("didMount") 
+        //Modal.alert("didMount") 
+    }
+    //选择运费险
+    _insurancePick(){
+        Picker.show({
+            title:'请选择运费险',
+            dataSource:this.state.insurance,
+            selectedKey:[0]},
+            (e)=>{
+                this.setState({
+                    insuranceSelectedKey:e[0].key
+                })
+            },
+            (e)=>{
+                Modal.toast(JSON.stringify(e));
+            }
+
+        );
+    }
+    //选择快递
+    _expressPick(){
+        Picker.show({
+            title:'请选择快递',
+            dataSource:this.state.expressData,
+            selectedKey:[0]},
+            (e)=>{
+                this.setState({
+                    expressSelectedKey:e[0].key
+                })
+            },
+            (e)=>{
+                Modal.toast(JSON.stringify(e));
+            }
+
+        );
     }
    
 }
