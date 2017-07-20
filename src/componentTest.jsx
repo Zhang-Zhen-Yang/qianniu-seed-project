@@ -3,6 +3,7 @@
 import {createElement, Component, render} from 'rax';
 import {View, Text, Modal, Image, Button } from 'nuke'
 import AlertDialog from './Component/AlertDialog.jsx'
+import ProgressDialog from './Component/ProgressDialog.jsx'
 import SpannableString from './Component/SpannableString.jsx'
 class ComponentTest extends Component {
     constructor(props) {
@@ -23,11 +24,13 @@ class ComponentTest extends Component {
             <View style={styles.container}>
                 
                 <Button  block={true} onPress={this._alertDialog.bind(this)} style={{fontSize:'40rem',marginTop:10}}>AlertDialog</Button>           
+                <Button block={true} onPress={this._progressDialog.bind(this)}> show PregressDialog</Button>
                 <Text>SpannableString</Text>
                 <SpannableString style={{color:'red',fontSize:'40rem'}}
                     opts={this.state.SpannableStringOpts}
                     text={this.state.SpannableStringText}></SpannableString>
                 <AlertDialog ref={(ref)=>{this.alertDialog = ref}}></AlertDialog>
+                <ProgressDialog ref={(ref)=>{this.progressDialog = ref}}></ProgressDialog>
             </View>
         );
     }
@@ -59,6 +62,12 @@ class ComponentTest extends Component {
             onMaskPress:function(){
               //Modal.toast('onMaskPress');  
             }
+        })
+    }
+    _progressDialog(){
+        this.progressDialog.show({
+            title:'progerss dialog',
+            message:'数据加载中...'
         })
     }
 }
