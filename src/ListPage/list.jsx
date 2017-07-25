@@ -19,9 +19,9 @@ class List extends Component {
     }
     render() {
         return ( 
-            <View style={[styles.container,{alignItems:'stretch',justifyContent:'flex-start'}]}>
+            <View style={[styles.container,{alignItems:'stretch'/*,justifyContent:'flex-start'*/}]}>
                 
-                <Text>当前页{this.props.currentPage}</Text>
+                
                 <ListView 
                     style={{}}
                     ref={(ref)=>{this.list = ref}}
@@ -29,18 +29,18 @@ class List extends Component {
                     renderFooter={this._renderFooter}
                     dataSource={this.props.listData/*listData*/}
                     renderRow={this._renderRow.bind(this)}
-                    onEndReached={()=>{this.endReached()}}>
+                    onEndReached={()=>{this.endReached()}}>                    
                 </ListView>
 
                
-                    <View style={styles.goTopWarp} >
-                        <Image 
-                        onClick={()=>{this._goTop()}}
-                            style={styles.goTop}
-                            source={{uri:'https://gtms03.alicdn.com/tps/i3/TB1rrfVJVXXXXalXXXXGEZzGpXX-40-40.png'}}>
-                        </Image>
-                    </View>
-                            
+                <View style={styles.goTopWarp} >
+                    <Image 
+                    onClick={()=>{this._goTop()}}
+                        style={styles.goTop}
+                        source={{uri:'https://gtms03.alicdn.com/tps/i3/TB1rrfVJVXXXXalXXXXGEZzGpXX-40-40.png'}}>
+                    </Image>
+                </View>
+                <Text>当前页{this.props.currentPage}</Text>         
                 
             
             </View>
