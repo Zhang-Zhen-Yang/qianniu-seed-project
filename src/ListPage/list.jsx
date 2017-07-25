@@ -23,7 +23,6 @@ class List extends Component {
                 
                 
                 <ListView 
-                    style={{}}
                     ref={(ref)=>{this.list = ref}}
                     renderHeader={this._renderHeader}
                     renderFooter={this._renderFooter}
@@ -33,13 +32,13 @@ class List extends Component {
                 </ListView>
 
                
-                <View style={styles.goTopWarp} >
+                {/*<View style={styles.goTopWarp} >
                     <Image 
                     onClick={()=>{this._goTop()}}
                         style={styles.goTop}
                         source={{uri:'https://gtms03.alicdn.com/tps/i3/TB1rrfVJVXXXXalXXXXGEZzGpXX-40-40.png'}}>
                     </Image>
-                </View>
+                </View>*/}
                 <Text>当前页{this.props.currentPage}</Text>         
                 
             

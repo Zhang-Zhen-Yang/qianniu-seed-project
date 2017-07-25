@@ -10,9 +10,14 @@ class ListHeader extends Component {
     }
     render() {
         return (
-            <RefreshControl style={{height:"80rem",width:"750rem",backgroundColor:"#cccccc",justifyContent:"center",alignItems:"center"}} 
-            isRefreshing={false} 
-            refreshing ={false}
+            <RefreshControl style={{
+                height:"80rem",
+                width:"750rem",
+                backgroundColor:"#cccccc",
+                justifyContent:"center",
+                alignItems:"center"}} 
+            isRefreshing={true} 
+            refreshing ={true}
             onRefresh={this.handleRefresh}>
                 <Text onclick={this.rfclick}>刷新</Text>
             </RefreshControl>
