@@ -32,21 +32,22 @@ class TabbarDemo extends Component {
         
         return (
             <View style={styles.container}>             
-                <Tabbar navTop={false} activeKey={'tab1'}>
+                <Tabbar navTop={false} activeKey="0" slider={true} onChange={this.change} navScrollable={false} asFramework={true}>
                     <Tabbar.Item
-                        tabKey="tab1"
+                        tabKey="0"
                         style={styles.item}
                         render={this.renderItem.bind(this,iconsMap.tab1)}
-                        >                        
+                        >
+                        <Text>TAB1</Text>             
                     </Tabbar.Item>
                     <Tabbar.Item
-                        tabKey="tab2"
+                        tabKey="1"
                         style={styles.item}
                         render={this.renderItem.bind(this,iconsMap.tab2)}>
-                        <AlertDialog></AlertDialog>
+                        <Text>TAB2</Text>  
                     </Tabbar.Item>
                     <Tabbar.Item
-                        tabKey="tab3"
+                        tabKey="2"
                         style={styles.item}
                         render={this.renderItem.bind(this,iconsMap.tab3)}>
                         <Layout.Grid style={{height:300}}>
@@ -56,7 +57,7 @@ class TabbarDemo extends Component {
                         </Layout.Grid>
                     </Tabbar.Item>
                     <Tabbar.Item
-                        tabKey="tab4"
+                        tabKey="3"
                         style={styles.item}
                         render={this.renderItem.bind(this,iconsMap.tab4)}>
                         <Text>fgfgfgf</Text>
@@ -79,6 +80,9 @@ class TabbarDemo extends Component {
             </Text>
 
         </View>)
+    }
+    change(){
+        console.log('change');
     }
 }
 
