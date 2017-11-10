@@ -127,6 +127,7 @@ const mapStateToProps = (state,ownProps) => {
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {
         add:()=>{
+            alert('ddd');
            dispatch({type:'ADD'}) 
         },
     }
