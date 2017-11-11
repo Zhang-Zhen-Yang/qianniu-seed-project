@@ -44,10 +44,15 @@ class DrawerLayoutContainer extends Component {
           drawerWidth={this.props.drawerWidth || 500}
           drawerTriggerWidth={this.props.drawerTriggerWidth || 20}
           renderNavigationView={() => this.props.renderNavigationView()}
-          duration={this.props.duration || 200}
+          duration={this.props.duration == undefined ? 200 : this.props.duration}
           gestureDisabled={this.props.gestureDisabled}
           opened={this.props.opened}
           closed={this.props.closed}
+          backdropDisabled={this.props.backdropDisabled}
+          backdropOpacity={this.props.backdropOpacity || 0.7}
+          closeWhenBackdropPress={this.props.closeWhenBackdropPress}
+          openCancel={this.props.openCancel}
+          closeCancel={this.props.closeCancel}
         />
       </View>
     );

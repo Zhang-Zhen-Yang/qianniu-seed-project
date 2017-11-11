@@ -7,14 +7,20 @@
 /*
   组件名 DrawerLayout 抽屉组件
   属性  duration  打开，关闭的时间，默认为200ms
-  属性 gestureDisabled 是否反持手势左边右划打开，向左划关闭,默认为false,支持手势
+  属性 gestureDisabled 是否支持手势左边右划打开，向左划关闭,默认为false,支持手势
   属性 drawerWidth   打开的内容宽度 默认为500
   属性 drawerTriggerWidth 手势触动的宽度 默认为20
   属性 renderNavigationView 内容区，返回值是一个组件
+  属性 backdropDisabled 背景区，是否显背景区 默认为false,显示
+  属性 backdropOpacity 内背景区不透明度0-1默认为0.7
+  属性 closeWhenBackdropPress 点击背景区是否关闭，默认能关闭
   方法 open 打开
   方法 close 关闭
+
   事件 opened 打开完成
   事件 closed 关闭完成
+  事件 openCancel 打开取消
+  事件 closeCancel 关闭取消
 */
 
 
@@ -37,7 +43,7 @@ class Recommend extends Component {
   }
   _navigationView() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.8)' }}>
+      <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#ffffff' }}>
         <Touchable onPress={() => { this.imgClick(); }}>
           <Image source={{ uri: 'https://p1.ssl.qhmsg.com/dr/220__/t010902106db62393f6.png' }} autoFit />
         </Touchable>
@@ -66,8 +72,13 @@ class Recommend extends Component {
         drawerWidth={500}
         drawerTriggerWidth={20}
         renderNavigationView={() => this._navigationView()}
+        backdropDisabled={false}
+        backdropOpacity={0.7}
+        closeWhenBackdropPress
         opened={() => { Modal.toast('打开完成'); }}
         closed={() => { Modal.toast('关闭完成'); }}
+        openCancel={() => { Modal.toast('打开取消'); }}
+        closeCancel={() => { Modal.toast('关闭取消'); }}
         style={{ justifyContent: 'center', alignItems: 'center' }}
       >
         <Button onPress={() => { this._open(); }}>OPEN</Button>
