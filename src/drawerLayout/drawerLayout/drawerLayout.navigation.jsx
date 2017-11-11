@@ -2,15 +2,45 @@
  * @Author: zhangzhenyang
  * @Date: 2017-11-10 16:08:10
  * @Last Modified by: zhangzhenyang
- * @Last Modified time: 2017-11-10 17:17:27
+ * @Last Modified time: 2017-11-11 15:35:27
  */
 
-import { createElement, Component, findDOMNode } from '$wbRax';
-import { View, Mask, Swipe, Transition, Dimensions, Touchable } from '$wbNuke';
+import { createElement, Component, findDOMNode, PropTypes } from '$wbRax';
+import { View, Mask, Swipe, Transition, Touchable } from '$wbNuke';
+
+const propTypes = {
+  drawerWidth: PropTypes.number,
+  drawerTriggerWidth: PropTypes.number,
+  renderNavigationView: PropTypes.function,
+  duration: PropTypes.number,
+  gestureDisabled: PropTypes.boolean,
+  opened: PropTypes.function,
+  closed: PropTypes.function,
+  backdropDisabled: PropTypes.function,
+  backdropOpacity: PropTypes.function,
+  closeWhenBackdropPress: PropTypes.function,
+  openCancel: PropTypes.function,
+  closeCancel: PropTypes.function,
+};
+
+const defaultProps = {
+  drawerWidth: 500,
+  drawerTriggerWidth: 20,
+  renderNavigationView: () => {},
+  duration: 200,
+  gestureDisabled: false,
+  opened: () => {},
+  closed: () => {},
+  backdropDisabled: false,
+  backdropOpacity: 0.7,
+  closeWhenBackdropPress: true,
+  openCancel: () => {},
+  closeCancel: () => {},
+};
 
 class Navigation extends Component {
   constructor(props) {
-    const ratio = Dimensions.get('window').scale;
+    // const ratio = Dimensions.get('window').scale;
     super(props);
     // console.log('props', props);
     this.drawerWidth = props.drawerWidth;
@@ -25,7 +55,7 @@ class Navigation extends Component {
   }
   // 打开drawerLayout
   open(type) {
-    const drawer = findDOMNode(this.refs.mask);
+    const drawer = findDOMNode(this.mask);
     const translateX = -this.state.left;
     const trans = { transform: `translateX(${translateX})` };
     Transition(drawer, trans, {
@@ -43,15 +73,17 @@ class Navigation extends Component {
       }, () => {
       });
       if (type) {
-        (typeof this.props[type] === 'function') ? this.props[type]() : null;
+        if (type === 'closeCancel') {
+          this.props.closeCancel();
+        }
       } else {
-        this.props.opened&&this.props.opened();
+        this.props.opened();
       }
     });
   }
   // 关闭drawerLayout
   close(type) {
-    const drawer = findDOMNode(this.refs.mask);
+    const drawer = findDOMNode(this.mask);
     const translateX = -this.state.left - this.drawerWidth;
     /* console.log(this.drawerWidth);
     console.log(this.state.left);
@@ -72,14 +104,16 @@ class Navigation extends Component {
       }, () => {
       });
       if (type) {
-        (typeof this.props[type] === 'function') ? this.props[type]() : null;
+        if (type === 'openCancel') {
+          this.props.openCancel();
+        }
       } else {
-        this.props.closed&&this.props.closed();
+        this.props.closed();
       }
     });
   }
   // 开始滑动
-  _onSwipeBegin(val) {
+  _onSwipeBegin() {
     if (this.gestureDisabled) { return; }
     // console.log('mask start', val);
   }
@@ -129,8 +163,9 @@ class Navigation extends Component {
     }, 0);
     // console.log('end---------------------------------end', val);
   }
+  // 渲染背景层
   _renderBackdrop() {
-    if (!this.props.backdropDisabled&&Math.abs(this.state.left) != this.drawerWidth) {
+    if (!this.props.backdropDisabled && Math.abs(this.state.left) != this.drawerWidth) {
       return (
         <Touchable onPress={() => { this._backdropPress(); }}>
           <Mask
@@ -141,6 +176,7 @@ class Navigation extends Component {
     }
     return ('');
   }
+  // 点击背景层
   _backdropPress() {
     if (this.props.closeWhenBackdropPress !== false) {
       this.close();
@@ -155,9 +191,9 @@ class Navigation extends Component {
         onSwipeBegin={(val) => { this._onSwipeBegin(val); }}
         onSwipe={(val) => { this._onSwipe(val); }}
         onSwipeEnd={(val) => { this._onSwipeEnd(val); }}
-      > 
+      >
         {this._renderBackdrop()}
-        <Mask ref="mask" style={[styles.mask, { left: this.state.left, width: (this.drawerWidth + this.drawerTriggerWidth) }]} {...this.props} >
+        <Mask ref={ref => { this.mask = ref; }} style={[styles.mask, { left: this.state.left, width: (this.drawerWidth + this.drawerTriggerWidth) }]} {...this.props} >
           <View style={[{ width: this.drawerWidth, flex: 1 }]}>
             {this.props.renderNavigationView()}
           </View>
@@ -166,6 +202,8 @@ class Navigation extends Component {
     );
   }
 }
+Navigation.propTypes = propTypes;
+Navigation.defaultProps = defaultProps;
 
 const styles = {
   backdrop: {

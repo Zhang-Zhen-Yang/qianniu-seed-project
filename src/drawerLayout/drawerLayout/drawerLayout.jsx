@@ -2,7 +2,7 @@
  * @Author: zhangzhenyang
  * @Date: 2017-11-10 16:07:54
  * @Last Modified by: zhangzhenyang
- * @Last Modified time: 2017-11-10 17:01:40
+ * @Last Modified time: 2017-11-11 15:29:34
  */
 
 'use strict';
@@ -41,15 +41,15 @@ class DrawerLayoutContainer extends Component {
         { this._renderContent() }
         <Navigation
           ref={ref => { this.drawerLayout = ref; }}
-          drawerWidth={this.props.drawerWidth || 500}
-          drawerTriggerWidth={this.props.drawerTriggerWidth || 20}
+          drawerWidth={this.props.drawerWidth}
+          drawerTriggerWidth={this.props.drawerTriggerWidth}
           renderNavigationView={() => this.props.renderNavigationView()}
-          duration={this.props.duration == undefined ? 200 : this.props.duration}
+          duration={this.props.duration}
           gestureDisabled={this.props.gestureDisabled}
           opened={this.props.opened}
           closed={this.props.closed}
           backdropDisabled={this.props.backdropDisabled}
-          backdropOpacity={this.props.backdropOpacity || 0.7}
+          backdropOpacity={this.props.backdropOpacity}
           closeWhenBackdropPress={this.props.closeWhenBackdropPress}
           openCancel={this.props.openCancel}
           closeCancel={this.props.closeCancel}
